@@ -54,5 +54,14 @@ class AccountTest {
         // When - Then
         assertThatThrownBy(()-> account.withdraw(amount)).isInstanceOf(NegativeAmountException.class);
     }
+    @Test
+    void accountShouldThrowNotEnoughMoneyException(){
+        // Given
+        Account account = new Account(BigDecimal.ONE);
+        BigDecimal amount = BigDecimal.TEN;
+
+        // When - Then
+        assertThatThrownBy(()-> account.withdraw(amount)).isInstanceOf(NotEnoughMoneyException.class);
+    }
 
 }
