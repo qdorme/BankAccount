@@ -23,7 +23,7 @@ class AccountTest {
     }
 
     @Test
-    void accountShouldThrowNegativeAmountException(){
+    void accountShouldThrowNegativeAmountExceptionWhenDepose(){
         // Given
         Account account = new Account();
         BigDecimal amount = BigDecimal.valueOf(-123.45);
@@ -33,7 +33,7 @@ class AccountTest {
     }
 
     @Test
-    void accountBalanceShouldBeDecreasedByAmountWithdraw(){
+    void accountBalanceShouldBeDecreasedByAmountWithdraw() throws NegativeAmountException {
         // Given
         Account account = new Account(BigDecimal.valueOf(2000));
         BigDecimal amount = BigDecimal.valueOf(500);
@@ -43,6 +43,16 @@ class AccountTest {
 
         // Then
         assertThat(account.balance()).isEqualByComparingTo(BigDecimal.valueOf(1500));
+    }
+
+    @Test
+    void accountShouldThrowNegativeAmountExceptionWhenWithdraw(){
+        // Given
+        Account account = new Account();
+        BigDecimal amount = BigDecimal.valueOf(-500);
+
+        // When - Then
+        assertThatThrownBy(()-> account.withdraw(amount)).isInstanceOf(NegativeAmountException.class);
     }
 
 }

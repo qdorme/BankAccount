@@ -27,7 +27,11 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(BigDecimal withdraw) {
+    public void withdraw(BigDecimal withdraw) throws NegativeAmountException {
+        if(withdraw.compareTo(ZERO) <= 0){
+            throw new NegativeAmountException();
+        }
 
+        balance = balance.subtract(withdraw);
     }
 }
