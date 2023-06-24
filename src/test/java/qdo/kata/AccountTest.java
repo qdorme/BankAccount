@@ -54,6 +54,7 @@ class AccountTest {
         // When - Then
         assertThatThrownBy(()-> account.withdraw(amount)).isInstanceOf(NegativeAmountException.class);
     }
+
     @Test
     void accountShouldThrowNotEnoughMoneyException(){
         // Given
@@ -62,6 +63,20 @@ class AccountTest {
 
         // When - Then
         assertThatThrownBy(()-> account.withdraw(amount)).isInstanceOf(NotEnoughMoneyException.class);
+    }
+
+    @Test
+    void accountShouldHaveADepositInHisHistory() throws NegativeAmountException {
+        // Given
+        Account account = new Account();
+        BigDecimal amount = BigDecimal.valueOf(500);
+
+        // When
+        account.deposit(amount);
+
+        // Then
+        assertThat(account.history()).hasSize(1);
+        assertThat(account.history().get(0).operation()).isEqualByComparingTo(Operation.DEPOSIT);
     }
 
 }

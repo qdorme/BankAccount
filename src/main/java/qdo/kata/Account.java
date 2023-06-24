@@ -1,6 +1,7 @@
 package qdo.kata;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
 
@@ -43,5 +44,9 @@ public class Account {
         if(deposit.compareTo(ZERO) <= 0){
             throw new NegativeAmountException();
         }
+    }
+
+    public List<Transaction> history() {
+        return null;
     }
 }
