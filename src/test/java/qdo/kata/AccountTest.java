@@ -66,19 +66,23 @@ class AccountTest {
     }
 
     @Test
-    void accountShouldHaveADepositInHisHistory() throws NegativeAmountException {
+    void accountShouldHaveADepositInHisHistory() throws NegativeAmountException, NotEnoughMoneyException {
         // Given
         Account account = new Account();
         BigDecimal amount = BigDecimal.valueOf(500);
 
         // When
         account.deposit(amount);
+        account.withdraw(amount);
 
         // Then
-        assertThat(account.history()).hasSize(1);
+        assertThat(account.history()).hasSize(2);
         assertThat(account.history().get(0).operation()).isEqualByComparingTo(Operation.DEPOSIT);
         assertThat(account.history().get(0).date()).isToday();
         assertThat(account.history().get(0).amount()).isEqualByComparingTo(amount);
+        assertThat(account.history().get(1).operation()).isEqualByComparingTo(Operation.WITHDRAWAL);
+        assertThat(account.history().get(1).date()).isToday();
+        assertThat(account.history().get(1).amount()).isEqualByComparingTo(amount);
     }
 
 }

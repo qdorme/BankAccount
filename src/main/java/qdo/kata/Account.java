@@ -38,6 +38,8 @@ public class Account {
         checkThatBalanceIsEnough(withdraw);
 
         balance = balance.subtract(withdraw);
+
+        transactions.add(new Transaction(Operation.WITHDRAWAL, LocalDate.now(), withdraw));
     }
 
     private void checkThatBalanceIsEnough(BigDecimal withdraw) throws NotEnoughMoneyException {
