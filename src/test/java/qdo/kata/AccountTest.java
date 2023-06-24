@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class AccountTest {
 
     @Test
-    void accountBalanceShouldBeIncreasedByAmountDeposed(){
+    void accountBalanceShouldBeIncreasedByAmountDeposed() throws NegativeAmountException {
         // Given
         Account account = new Account();
         BigDecimal amount = BigDecimal.valueOf(123.45);
@@ -32,6 +32,17 @@ class AccountTest {
         assertThatThrownBy(()-> account.deposit(amount)).isInstanceOf(NegativeAmountException.class);
     }
 
+    @Test
+    void accountBalanceShouldBeDecreasedByAmountWithdraw(){
+        // Given
+        Account account = new Account(BigDecimal.valueOf(2000));
+        BigDecimal amount = BigDecimal.valueOf(500);
 
+        // When
+        account.withdraw(amount);
+
+        // Then
+        assertThat(account.balance()).isEqualByComparingTo(BigDecimal.valueOf(1500));
+    }
 
 }

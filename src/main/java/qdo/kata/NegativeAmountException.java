@@ -1,4 +1,4 @@
 package qdo.kata;
 
-public class NegativeAmountException {
+public class NegativeAmountException extends Exception {
 }
