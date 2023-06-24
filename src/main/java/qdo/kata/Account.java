@@ -16,9 +16,7 @@ public class Account {
     }
 
     public void deposit(BigDecimal deposit) throws NegativeAmountException {
-        if(deposit.compareTo(ZERO) <= 0){
-            throw new NegativeAmountException();
-        }
+        verifyAmountIsNotNegative(deposit);
 
         balance = balance.add(deposit);
     }
@@ -28,10 +26,14 @@ public class Account {
     }
 
     public void withdraw(BigDecimal withdraw) throws NegativeAmountException {
-        if(withdraw.compareTo(ZERO) <= 0){
-            throw new NegativeAmountException();
-        }
+        verifyAmountIsNotNegative(withdraw);
 
         balance = balance.subtract(withdraw);
+    }
+
+    private static void verifyAmountIsNotNegative(BigDecimal deposit) throws NegativeAmountException {
+        if(deposit.compareTo(ZERO) <= 0){
+            throw new NegativeAmountException();
+        }
     }
 }
