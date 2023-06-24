@@ -33,7 +33,7 @@ class AccountTest {
     }
 
     @Test
-    void accountBalanceShouldBeDecreasedByAmountWithdraw() throws NegativeAmountException {
+    void accountBalanceShouldBeDecreasedByAmountWithdraw() throws NegativeAmountException, NotEnoughMoneyException {
         // Given
         Account account = new Account(BigDecimal.valueOf(2000));
         BigDecimal amount = BigDecimal.valueOf(500);

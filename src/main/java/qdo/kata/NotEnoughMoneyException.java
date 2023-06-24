@@ -1,4 +1,4 @@
 package qdo.kata;
 
-public class NotEnoughMoneyException {
+public class NotEnoughMoneyException extends Exception {
 }

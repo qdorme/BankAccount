@@ -16,7 +16,7 @@ public class Account {
     }
 
     public void deposit(BigDecimal deposit) throws NegativeAmountException {
-        verifyAmountIsNotNegative(deposit);
+        checkThatAmoutIsPositive(deposit);
 
         balance = balance.add(deposit);
     }
@@ -25,13 +25,21 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(BigDecimal withdraw) throws NegativeAmountException {
-        verifyAmountIsNotNegative(withdraw);
+    public void withdraw(BigDecimal withdraw) throws NegativeAmountException, NotEnoughMoneyException {
+        checkThatAmoutIsPositive(withdraw);
+
+        checkThatBalanceIsEnough(withdraw);
 
         balance = balance.subtract(withdraw);
     }
 
-    private static void verifyAmountIsNotNegative(BigDecimal deposit) throws NegativeAmountException {
+    private void checkThatBalanceIsEnough(BigDecimal withdraw) throws NotEnoughMoneyException {
+        if(withdraw.compareTo(balance)> 0){
+            throw new NotEnoughMoneyException();
+        }
+    }
+
+    private static void checkThatAmoutIsPositive(BigDecimal deposit) throws NegativeAmountException {
         if(deposit.compareTo(ZERO) <= 0){
             throw new NegativeAmountException();
         }
