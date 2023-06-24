@@ -1,6 +1,8 @@
 package qdo.kata;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.math.BigDecimal.ZERO;
@@ -8,10 +10,12 @@ import static java.math.BigDecimal.ZERO;
 public class Account {
 
     private BigDecimal balance;
+    private List<Transaction> transactions = new ArrayList<>();
 
     public Account(){
         balance = ZERO;
     }
+
     public Account(BigDecimal startingBalance) {
         balance =  startingBalance;
     }
@@ -20,6 +24,8 @@ public class Account {
         checkThatAmoutIsPositive(deposit);
 
         balance = balance.add(deposit);
+
+        transactions.add(new Transaction(Operation.DEPOSIT, LocalDate.now(), deposit));
     }
 
     public BigDecimal balance() {
@@ -47,6 +53,6 @@ public class Account {
     }
 
     public List<Transaction> history() {
-        return null;
+        return transactions;
     }
 }

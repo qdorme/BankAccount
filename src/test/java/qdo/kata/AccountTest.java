@@ -77,6 +77,8 @@ class AccountTest {
         // Then
         assertThat(account.history()).hasSize(1);
         assertThat(account.history().get(0).operation()).isEqualByComparingTo(Operation.DEPOSIT);
+        assertThat(account.history().get(0).date()).isToday();
+        assertThat(account.history().get(0).amount()).isEqualByComparingTo(amount);
     }
 
 }

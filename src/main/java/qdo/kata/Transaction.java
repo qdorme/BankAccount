@@ -1,4 +1,10 @@
 package qdo.kata;
 
-public record Transaction(Operation operation) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record Transaction(Operation operation,
+                          LocalDate date,
+                          BigDecimal amount){
+
 }
