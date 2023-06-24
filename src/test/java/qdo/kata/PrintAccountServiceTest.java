@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.time.format.FormatStyle.MEDIUM;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PrintAccountServiceTest {
